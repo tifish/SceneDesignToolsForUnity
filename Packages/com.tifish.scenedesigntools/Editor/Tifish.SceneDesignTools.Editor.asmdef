@@ -1,0 +1,16 @@
+{
+    "name": "Tifish.SceneDesignTools.Editor",
+    "references": [
+        "Tifish.SceneDesignTools"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

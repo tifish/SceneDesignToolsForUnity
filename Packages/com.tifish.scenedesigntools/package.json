@@ -1,0 +1,13 @@
+{
+  "name": "com.tifish.scenedesigntools",
+  "version": "1.0.0",
+  "displayName": "Scene Design Tools",
+  "description": "Scene design tools.",
+  "unity": "2018.2",
+  "keywords": [
+    "scene",
+    "tools"
+  ],
+  "author": "Winston Feng <tifish@gmail.com>",
+  "license": "MIT"
+}
