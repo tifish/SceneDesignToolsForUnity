@@ -8,19 +8,16 @@ namespace SceneDesignTools
     {
 #if UNITY_EDITOR
         public bool showMe = true;
-        public bool showChildren;
 
         private void OnDrawGizmos()
         {
+            if (!showMe)
+                return;
+
             Gizmos.color = Color.yellow;
             const float size = 0.2f;
 
-            if (showMe)
-                DrawPoint(transform.position, size);
-
-            if (showChildren)
-                foreach (var childTransform in GetComponentsInChildren<Transform>().Skip(1))
-                    DrawPoint(childTransform.position, size);
+            DrawPoint(transform.position, size);
         }
 
         private void DrawPoint(in Vector3 position, float size)
