@@ -64,6 +64,8 @@ namespace SceneDesignTools
 
             foreach (var sceneDesignTool in _sceneDesignTools)
                 sceneDesignTool.OnSelectionChange();
+
+            Repaint();
         }
 
         private void OnInspectorUpdate()
