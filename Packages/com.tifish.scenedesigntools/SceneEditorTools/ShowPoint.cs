@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace SceneDesignTools
@@ -8,6 +8,8 @@ namespace SceneDesignTools
     {
 #if UNITY_EDITOR
         public bool showMe = true;
+        public static float Multiple = -1f;
+        public const string ShowPointMultipleKey = "ShowPointMultiple";
 
         private void OnDrawGizmos()
         {
@@ -17,7 +19,10 @@ namespace SceneDesignTools
             Gizmos.color = Color.yellow;
             const float size = 0.2f;
 
-            DrawPoint(transform.position, size);
+            if (Multiple <= 0)
+                Multiple = EditorPrefs.GetFloat(ShowPointMultipleKey, 1f);
+
+            DrawPoint(transform.position, size * Multiple);
         }
 
         private void DrawPoint(in Vector3 position, float size)

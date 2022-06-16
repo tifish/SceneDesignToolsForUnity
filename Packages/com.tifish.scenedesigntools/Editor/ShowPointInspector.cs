@@ -19,6 +19,13 @@ namespace SceneDesignTools
             serializedObject.Update();
 
             EditorGUILayout.PropertyField(_showMeProp, new GUIContent(Strings.ShowMe));
+            EditorGUI.BeginChangeCheck();
+            ShowPoint.Multiple = EditorGUILayout.Slider(Strings.Multiple, ShowPoint.Multiple, 0, 10);
+            if (EditorGUI.EndChangeCheck())
+            {
+                SceneView.lastActiveSceneView.Repaint();
+                EditorPrefs.SetFloat(ShowPoint.ShowPointMultipleKey, ShowPoint.Multiple);
+            }
 
             serializedObject.ApplyModifiedProperties();
         }

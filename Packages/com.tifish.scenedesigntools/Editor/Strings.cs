@@ -9,6 +9,7 @@ namespace SceneDesignTools
         public static readonly string PlaceSelectedObjectsByClick = "Place selected objects by click";
         public static readonly string ShowPoint = "Show Point";
         public static readonly string ShowMe = "Show Me";
+        public static readonly string Multiple = "Multiple";
         public static readonly string AddShowPointTool = "Add show point tool";
         public static readonly string RemoveShowPointTool = "Remove show point tool";
         public static readonly string AddShowPointToolForDirectChildren = "Add show point tool for direct children";
@@ -22,6 +23,7 @@ namespace SceneDesignTools
                 StickSelectedObjectsToGround = "选中物体贴地";
                 PlaceSelectedObjectsByClick = "鼠标点击放置选中物体";
                 ShowMe = "显示我自己";
+                Multiple = "放大倍数";
                 AddShowPointTool = "添加显示点工具";
                 RemoveShowPointTool = "删除显示点工具";
                 AddShowPointToolForDirectChildren = "为子节点添加显示点工具";
