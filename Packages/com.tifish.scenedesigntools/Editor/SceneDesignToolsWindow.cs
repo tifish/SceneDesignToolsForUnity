@@ -8,7 +8,7 @@ namespace SceneDesignTools
         private static SceneDesignToolsWindow Instance
             => GetWindow<SceneDesignToolsWindow>(Strings.SceneDesignTools);
 
-        [MenuItem("Window/Scene Design Tools")]
+        [MenuItem("Window/" + Strings.SceneDesignTools)]
         public new static void Show()
         {
             Instance.Show(true);
@@ -32,7 +32,6 @@ namespace SceneDesignTools
 
         private void OnPlayModeChanged(PlayModeStateChange obj)
         {
-
         }
 
         private void OnDisable()

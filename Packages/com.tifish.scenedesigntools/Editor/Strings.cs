@@ -1,33 +1,60 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEditor;
+using UnityEngine;
 
 namespace SceneDesignTools
 {
+    [InitializeOnLoad]
     public static class Strings
     {
-        public static readonly string SceneDesignTools = "Scene Design Tools";
-        public static readonly string StickSelectedObjectsToGround = "Stick selected objects to ground";
-        public static readonly string PlaceSelectedObjectsByClick = "Place selected objects by click";
-        public static readonly string ShowPoint = "Show Point";
-        public static readonly string ShowMe = "Show Me";
-        public static readonly string Multiple = "Multiple";
-        public static readonly string AddShowPointTool = "Add show point tool";
-        public static readonly string RemoveShowPointTool = "Remove show point tool";
-        public static readonly string AddShowPointToolForDirectChildren = "Add show point tool for direct children";
-        public static readonly string RemoveShowPointToolForDirectChildren = "Remove show point tool for direct children";
+#if SCENE_DESIGN_TOOLS_CHINESE_SIMPLIFIED
+        public const string SceneDesignTools = "场景设计工具";
+        public const string StickSelectedObjectsToGround = "选中物体贴地";
+        public const string PlaceSelectedObjectsByClick = "鼠标点击放置选中物体";
+        public const string ShowPoint = "Show Point";
+        public const string ShowMe = "显示我自己";
+        public const string Multiple = "放大倍数";
+        public const string AddShowPointTool = "添加显示点工具";
+        public const string RemoveShowPointTool = "删除显示点工具";
+        public const string AddShowPointToolForDirectChildren = "为子节点添加显示点工具";
+        public const string RemoveShowPointToolForDirectChildren = "为子节点删除显示点工具";
+#else
+        public const string SceneDesignTools = "Scene Design Tools";
+        public const string StickSelectedObjectsToGround = "Stick selected objects to ground";
+        public const string PlaceSelectedObjectsByClick = "Place selected objects by click";
+        public const string ShowPoint = "Show Point";
+        public const string ShowMe = "Show Me";
+        public const string Multiple = "Multiple";
+        public const string AddShowPointTool = "Add show point tool";
+        public const string RemoveShowPointTool = "Remove show point tool";
+        public const string AddShowPointToolForDirectChildren = "Add show point tool for direct children";
+        public const string RemoveShowPointToolForDirectChildren = "Remove show point tool for direct children";
+#endif
+
+        private const string ChineseMacroName = "SCENE_DESIGN_TOOLS_CHINESE_SIMPLIFIED";
 
         static Strings()
         {
+            var macros = PlayerSettings.GetScriptingDefineSymbolsForGroup(
+                EditorUserBuildSettings.selectedBuildTargetGroup).Split(';').ToList();
+
             if (Application.systemLanguage == SystemLanguage.ChineseSimplified)
             {
-                SceneDesignTools = "场景设计工具";
-                StickSelectedObjectsToGround = "选中物体贴地";
-                PlaceSelectedObjectsByClick = "鼠标点击放置选中物体";
-                ShowMe = "显示我自己";
-                Multiple = "放大倍数";
-                AddShowPointTool = "添加显示点工具";
-                RemoveShowPointTool = "删除显示点工具";
-                AddShowPointToolForDirectChildren = "为子节点添加显示点工具";
-                RemoveShowPointToolForDirectChildren = "为子节点删除显示点工具";
+                if (macros.Contains(ChineseMacroName))
+                    return;
+
+                macros.Add(ChineseMacroName);
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(
+                    EditorUserBuildSettings.selectedBuildTargetGroup, string.Join(";", macros));
+            }
+            else
+            {
+                if (!macros.Contains(ChineseMacroName))
+                    return;
+
+                macros.Remove(ChineseMacroName);
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(
+                    EditorUserBuildSettings.selectedBuildTargetGroup, string.Join(";", macros));
             }
         }
     }
