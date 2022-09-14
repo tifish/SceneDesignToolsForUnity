@@ -21,7 +21,7 @@ namespace SceneDesignTools
             EditorGUILayout.PropertyField(_showMeProp, new GUIContent(Strings.ShowMe));
             EditorGUI.BeginChangeCheck();
             ShowPoint.Multiple = EditorGUILayout.Slider(
-                Strings.Multiple, ShowPoint.Multiple, 0, 10);
+                Strings.Multiple, ShowPoint.Multiple, 0, 50);
             if (EditorGUI.EndChangeCheck())
             {
                 SceneView.lastActiveSceneView.Repaint();
