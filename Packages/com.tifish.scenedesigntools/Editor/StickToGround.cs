@@ -20,6 +20,8 @@ namespace SceneDesignTools
         public static void StickGameObjectToGround(GameObject go)
         {
             var currentCenter = go.transform.position;
+            currentCenter.y += _raisingHeightBeforeSticking;
+
             while (Physics.Raycast(currentCenter, Vector3.down, out var hitInfo))
             {
                 if (_ignoreLayers.Contains(hitInfo.transform.gameObject.layer))
@@ -66,12 +68,22 @@ namespace SceneDesignTools
             }
         }
 
+        private const string RaisingHeightBeforeStickingKey = "SceneDesignTools.RaisingHeightBeforeSticking";
+        private static float _raisingHeightBeforeSticking;
+
         public override void OnGUI()
         {
             GUI.enabled = OwnerWindow.HasSelection;
 
             if (GUILayout.Button(Strings.StickSelectedObjectsToGround))
                 StickSelectionToGround();
+
+            EditorGUI.BeginChangeCheck();
+            _raisingHeightBeforeSticking = EditorGUILayout.FloatField(
+                Strings.RaisingHeightBeforeSticking, _raisingHeightBeforeSticking);
+            if (EditorGUI.EndChangeCheck())
+                PlayerPrefs.SetFloat(RaisingHeightBeforeStickingKey, _raisingHeightBeforeSticking);
+
             if (GUILayout.Button(Strings.StickSelectedObjectsToTerrain))
                 StickSelectionToTerrain();
 
@@ -92,6 +104,8 @@ namespace SceneDesignTools
 
         static StickToGround()
         {
+            _raisingHeightBeforeSticking = PlayerPrefs.GetFloat(RaisingHeightBeforeStickingKey, 0);
+
             var pref = PlayerPrefs.GetString(IgnoreLayersKey, "");
 
             if (string.IsNullOrEmpty(pref))

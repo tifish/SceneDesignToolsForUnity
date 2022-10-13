@@ -10,6 +10,7 @@ namespace SceneDesignTools
 #if SCENE_DESIGN_TOOLS_CHINESE_SIMPLIFIED
         public const string SceneDesignTools = "场景设计工具";
         public const string StickSelectedObjectsToGround = "选中物体贴地";
+        public const string RaisingHeightBeforeSticking = "贴地之前抬升高度";
         public const string StickSelectedObjectsToTerrain = "选中物体贴地形（Terrain）";
         public const string PlaceSelectedObjectsByClick = "鼠标点击放置选中物体";
         public const string IgnoreLayers = "忽略以下层级：";
@@ -23,6 +24,7 @@ namespace SceneDesignTools
 #else
         public const string SceneDesignTools = "Scene Design Tools";
         public const string StickSelectedObjectsToGround = "Stick selected objects to ground";
+        public const string RaisingHeightBeforeSticking = "Raising before sticking";
         public const string StickSelectedObjectsToTerrain = "Stick selected objects to terrain";
         public const string PlaceSelectedObjectsByClick = "Place selected objects by click";
         public const string IgnoreLayers = "Ignore layers:";
