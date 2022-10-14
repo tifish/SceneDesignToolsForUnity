@@ -24,6 +24,12 @@ namespace SceneDesignTools
 
             while (Physics.Raycast(currentCenter, Vector3.down, out var hitInfo))
             {
+                if (hitInfo.transform == go.transform)
+                {
+                    currentCenter.y -= 0.01f;
+                    continue;
+                }
+
                 if (_ignoreLayers.Contains(hitInfo.transform.gameObject.layer))
                 {
                     currentCenter.y -= 0.01f;
