@@ -15,13 +15,13 @@ namespace SceneDesignTools
         public override void OnGUI()
         {
             GUI.enabled = OwnerWindow.HasSelection;
-            
+
             EditorGUI.BeginChangeCheck();
             _isPlacingObject = GUILayout.Toggle(_isPlacingObject, Strings.PlaceSelectedObjectsByClick, GUI.skin.button);
             if (EditorGUI.EndChangeCheck())
                 if (SceneView.lastActiveSceneView)
                     SceneView.lastActiveSceneView.Repaint();
-            
+
             GUI.enabled = true;
         }
 
@@ -38,7 +38,7 @@ namespace SceneDesignTools
                 return;
 
             var worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-            if (!Physics.Raycast(worldRay, out var hitInfo, int.MaxValue))
+            if (!Physics.Raycast(worldRay, out var hitInfo, float.MaxValue, IgnoreLayers.Mask))
                 return;
 
             foreach (var go in Selection.gameObjects)

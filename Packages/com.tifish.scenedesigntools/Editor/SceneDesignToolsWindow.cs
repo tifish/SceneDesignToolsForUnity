@@ -21,6 +21,7 @@ namespace SceneDesignTools
             _sceneDesignTools.Clear();
             _sceneDesignTools.Add(new StickToGround(this));
             _sceneDesignTools.Add(new PlaceObjectByClick(this));
+            _sceneDesignTools.Add(new IgnoreLayers(this));
             _sceneDesignTools.Add(new ShowPointTool(this));
 
             SceneView.onSceneGUIDelegate += OnSceneGUI;
