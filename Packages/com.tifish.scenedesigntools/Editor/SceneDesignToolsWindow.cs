@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine;
 
 namespace SceneDesignTools
 {
@@ -44,10 +45,16 @@ namespace SceneDesignTools
                 sceneDesignTool.OnDisable();
         }
 
+        private Vector2 _scrollPos = Vector2.zero;
+
         private void OnGUI()
         {
+            _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
+
             foreach (var sceneDesignTool in _sceneDesignTools)
                 sceneDesignTool.OnGUI();
+
+            EditorGUILayout.EndScrollView();
         }
 
         private void OnSceneGUI(SceneView sceneView)

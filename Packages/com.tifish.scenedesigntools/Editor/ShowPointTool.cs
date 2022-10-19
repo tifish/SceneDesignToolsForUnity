@@ -1,5 +1,7 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace SceneDesignTools
 {
@@ -46,11 +48,44 @@ namespace SceneDesignTools
                             RemoveShowPoint(trans.GetChild(i).gameObject);
                     }
 
+                GUI.enabled = true;
+
+                GUILayout.Label(Strings.VisibleColors);
+
+                EditorGUILayout.BeginHorizontal();
+
+                if (GUILayout.Button(Strings.ShowAll))
+                {
+                    ShowPoint.VisibleColors.SetAll(true);
+                    SaveVisibleColors();
+                }
+
+                if (GUILayout.Button(Strings.HideAll))
+                {
+                    ShowPoint.VisibleColors.SetAll(false);
+                    SaveVisibleColors();
+                }
+
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUI.BeginChangeCheck();
+                for (var i = 0; i < ShowPoint.ColorNames.Length; i++)
+                    ShowPoint.VisibleColors[i] = EditorGUILayout.Toggle(ShowPoint.ColorNames[i], ShowPoint.VisibleColors[i]);
+                if (EditorGUI.EndChangeCheck())
+                    SaveVisibleColors();
+
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.EndHorizontal();
             }
 
-            GUI.enabled = true;
+            void SaveVisibleColors()
+            {
+                var intArray = new int[1];
+                ShowPoint.VisibleColors.CopyTo(intArray, 0);
+                PlayerPrefs.SetInt(ShowPoint.VisibleColorsKey, intArray[0]);
+
+                SceneView.RepaintAll();
+            }
         }
 
         private static void AddShowPoint(GameObject go)
