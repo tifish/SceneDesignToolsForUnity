@@ -9,11 +9,13 @@ namespace SceneDesignTools
     {
 #if SCENE_DESIGN_TOOLS_CHINESE_SIMPLIFIED
         public const string SceneDesignTools = "场景设计工具";
+        public const string StickToGround = "贴地";
         public const string StickSelectedObjectsToGround = "选中物体贴地";
         public const string RaisingHeightBeforeSticking = "贴地之前抬升高度";
         public const string StickSelectedObjectsToTerrain = "选中物体贴地形（Terrain）";
+        public const string PlaceObject = "放置物体";
         public const string PlaceSelectedObjectsByClick = "鼠标点击放置选中物体";
-        public const string IgnoreLayers = "忽略以下层级：";
+        public const string IgnoreLayers = "忽略以下层级";
         public const string ShowPoint = "显示点";
         public const string Color = "颜色";
         public const string ShowMe = "显示我自己";
@@ -23,13 +25,17 @@ namespace SceneDesignTools
         public const string AddShowPointToolForDirectChildren = "为子节点添加显示点工具";
         public const string RemoveShowPointToolForDirectChildren = "为子节点删除显示点工具";
         public const string VisibleColors = "要显示的颜色：";
+        public const string ShowAll = "全部显示";
+        public const string HideAll = "全部隐藏";
 #else
         public const string SceneDesignTools = "Scene Design Tools";
+        public const string StickToGround = "Stick to ground";
         public const string StickSelectedObjectsToGround = "Stick selected objects to ground";
         public const string RaisingHeightBeforeSticking = "Raising before sticking";
         public const string StickSelectedObjectsToTerrain = "Stick selected objects to terrain";
+        public const string PlaceObject = "Place object";
         public const string PlaceSelectedObjectsByClick = "Place selected objects by click";
-        public const string IgnoreLayers = "Ignore layers:";
+        public const string IgnoreLayers = "Ignore layers";
         public const string ShowPoint = "Show Point";
         public const string Color = "Color";
         public const string ShowMe = "Show Me";
@@ -38,9 +44,9 @@ namespace SceneDesignTools
         public const string RemoveShowPointTool = "Remove show point tool";
         public const string AddShowPointToolForDirectChildren = "Add show point tool for direct children";
         public const string RemoveShowPointToolForDirectChildren = "Remove show point tool for direct children";
-        public const string VisibleColors = "要显示的颜色：";
-        public const string ShowAll = "全部显示";
-        public const string HideAll = "全部隐藏";
+        public const string VisibleColors = "Visible colors:";
+        public const string ShowAll = "Show all";
+        public const string HideAll = "Hide all";
 #endif
 
         private const string ChineseMacroName = "SCENE_DESIGN_TOOLS_CHINESE_SIMPLIFIED";

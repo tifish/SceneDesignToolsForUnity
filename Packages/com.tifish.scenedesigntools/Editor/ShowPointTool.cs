@@ -1,7 +1,5 @@
-﻿using System;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace SceneDesignTools
 {
@@ -15,14 +13,12 @@ namespace SceneDesignTools
 
         public override void OnGUI()
         {
-            GUI.enabled = OwnerWindow.HasSelection;
-
-            _expanded = EditorGUILayout.Foldout(_expanded, Strings.ShowPoint);
+            _expanded = EditorGUILayout.Foldout(_expanded, Strings.ShowPoint, EditorGUIHelper.FoldoutStyle);
             if (_expanded)
             {
-                EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.Space();
-                EditorGUILayout.BeginVertical();
+                GUI.enabled = OwnerWindow.HasSelection;
+
+                EditorGUIHelper.BeginIndent();
 
                 if (GUILayout.Button(Strings.AddShowPointTool))
                     foreach (var go in Selection.gameObjects)
@@ -74,9 +70,10 @@ namespace SceneDesignTools
                 if (EditorGUI.EndChangeCheck())
                     SaveVisibleColors();
 
-                EditorGUILayout.EndVertical();
-                EditorGUILayout.EndHorizontal();
+                EditorGUIHelper.EndIndent();
             }
+
+            EditorGUIHelper.SeparatorLine();
 
             void SaveVisibleColors()
             {

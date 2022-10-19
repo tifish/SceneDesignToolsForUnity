@@ -19,7 +19,7 @@ namespace SceneDesignTools
 
         private static void UpdateIgnoreMask()
         {
-            Mask = ~_layerIDs.Aggregate(0, (ignoreMask, ignoreLayerID) => ignoreMask | 1 << ignoreLayerID);
+            Mask = ~_layerIDs.Aggregate(0, (ignoreMask, ignoreLayerID) => ignoreMask | (1 << ignoreLayerID));
         }
 
         static IgnoreLayers()
@@ -36,44 +36,51 @@ namespace SceneDesignTools
             UpdateIgnoreMask();
         }
 
+        private static bool _expanded = true;
+
         public override void OnGUI()
         {
-            GUILayout.Label(Strings.IgnoreLayers);
-
-            EditorGUILayout.BeginVertical(EditorStyles.foldout);
-
-            EditorGUI.BeginChangeCheck();
-            for (var i = 0; i < _layerIDs.Count; i++)
+            _expanded = EditorGUILayout.Foldout(_expanded, Strings.IgnoreLayers, EditorGUIHelper.FoldoutStyle);
+            if (_expanded)
             {
-                EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
+                EditorGUIHelper.BeginIndent();
 
-                _layerIDs[i] = EditorGUILayout.LayerField(_layerIDs[i], EditorStyles.toolbarDropDown);
-                if (GUILayout.Button("-", EditorStyles.toolbarButton))
-                    _layerIDs.RemoveAt(i);
-
-                EditorGUILayout.EndHorizontal();
-            }
-
-            if (GUILayout.Button("+", EditorStyles.toolbarButton))
-                for (var i = 0; i < 32; i++)
+                EditorGUI.BeginChangeCheck();
+                for (var i = 0; i < _layerIDs.Count; i++)
                 {
-                    if (_layerIDs.Contains(i) || LayerMask.LayerToName(i) == null)
-                        continue;
+                    EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
 
-                    _layerIDs.Add(i);
-                    break;
+                    _layerIDs[i] = EditorGUILayout.LayerField(_layerIDs[i], EditorStyles.toolbarDropDown);
+                    if (GUILayout.Button("-", EditorStyles.toolbarButton))
+                        _layerIDs.RemoveAt(i);
+
+                    EditorGUILayout.EndHorizontal();
                 }
 
-            if (EditorGUI.EndChangeCheck())
-            {
-                _layerIDs = _layerIDs.Distinct().ToList();
-                UpdateIgnoreMask();
+                if (GUILayout.Button("+", EditorStyles.toolbarButton))
+                    for (var i = 0; i < 32; i++)
+                    {
+                        if (_layerIDs.Contains(i) || LayerMask.LayerToName(i) == null)
+                            continue;
 
-                var pref = string.Join(",", _layerIDs.Select(i => i.ToString()));
-                PlayerPrefs.SetString(IgnoreLayersKey, pref);
+                        _layerIDs.Add(i);
+                        break;
+                    }
+
+                if (EditorGUI.EndChangeCheck())
+                {
+                    _layerIDs = _layerIDs.Distinct().ToList();
+                    UpdateIgnoreMask();
+
+                    var pref = string.Join(",", _layerIDs.Select(i => i.ToString()));
+                    PlayerPrefs.SetString(IgnoreLayersKey, pref);
+                }
+
+                GUILayout.Space(2f);
+                EditorGUIHelper.EndIndent();
             }
 
-            EditorGUILayout.EndVertical();
+            EditorGUIHelper.SeparatorLine();
         }
     }
 }

@@ -75,21 +75,33 @@ namespace SceneDesignTools
         private const string RaisingHeightBeforeStickingKey = "SceneDesignTools.RaisingHeightBeforeSticking";
         private static float _raisingHeightBeforeSticking;
 
+        private static bool _expanded = true;
+
         public override void OnGUI()
         {
-            GUI.enabled = OwnerWindow.HasSelection;
+            _expanded = EditorGUILayout.Foldout(_expanded, Strings.StickToGround, EditorGUIHelper.FoldoutStyle);
+            if (_expanded)
+            {
+                GUI.enabled = OwnerWindow.HasSelection;
 
-            if (GUILayout.Button(Strings.StickSelectedObjectsToGround))
-                StickSelectionToGround();
+                EditorGUIHelper.BeginIndent();
 
-            EditorGUI.BeginChangeCheck();
-            _raisingHeightBeforeSticking = EditorGUILayout.FloatField(
-                Strings.RaisingHeightBeforeSticking, _raisingHeightBeforeSticking);
-            if (EditorGUI.EndChangeCheck())
-                PlayerPrefs.SetFloat(RaisingHeightBeforeStickingKey, _raisingHeightBeforeSticking);
+                if (GUILayout.Button(Strings.StickSelectedObjectsToGround))
+                    StickSelectionToGround();
 
-            if (GUILayout.Button(Strings.StickSelectedObjectsToTerrain))
-                StickSelectionToTerrain();
+                EditorGUI.BeginChangeCheck();
+                _raisingHeightBeforeSticking = EditorGUILayout.FloatField(
+                    Strings.RaisingHeightBeforeSticking, _raisingHeightBeforeSticking);
+                if (EditorGUI.EndChangeCheck())
+                    PlayerPrefs.SetFloat(RaisingHeightBeforeStickingKey, _raisingHeightBeforeSticking);
+
+                if (GUILayout.Button(Strings.StickSelectedObjectsToTerrain))
+                    StickSelectionToTerrain();
+
+                EditorGUIHelper.EndIndent();
+            }
+
+            EditorGUIHelper.SeparatorLine();
 
             GUI.enabled = true;
         }

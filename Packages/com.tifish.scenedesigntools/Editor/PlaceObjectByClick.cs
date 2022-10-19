@@ -11,18 +11,29 @@ namespace SceneDesignTools
         }
 
         private bool _isPlacingObject;
+        private static bool _expanded = true;
 
         public override void OnGUI()
         {
-            GUI.enabled = OwnerWindow.HasSelection;
+            _expanded = EditorGUILayout.Foldout(_expanded, Strings.PlaceObject, EditorGUIHelper.FoldoutStyle);
+            if (_expanded)
+            {
+                GUI.enabled = OwnerWindow.HasSelection;
 
-            EditorGUI.BeginChangeCheck();
-            _isPlacingObject = GUILayout.Toggle(_isPlacingObject, Strings.PlaceSelectedObjectsByClick, GUI.skin.button);
-            if (EditorGUI.EndChangeCheck())
-                if (SceneView.lastActiveSceneView)
-                    SceneView.lastActiveSceneView.Repaint();
+                EditorGUIHelper.BeginIndent();
 
-            GUI.enabled = true;
+                EditorGUI.BeginChangeCheck();
+                _isPlacingObject = GUILayout.Toggle(_isPlacingObject, Strings.PlaceSelectedObjectsByClick, GUI.skin.button);
+                if (EditorGUI.EndChangeCheck())
+                    if (SceneView.lastActiveSceneView)
+                        SceneView.lastActiveSceneView.Repaint();
+
+                EditorGUIHelper.EndIndent();
+
+                GUI.enabled = true;
+            }
+
+            EditorGUIHelper.SeparatorLine();
         }
 
         public override void OnSceneGUI(SceneView sceneView)
