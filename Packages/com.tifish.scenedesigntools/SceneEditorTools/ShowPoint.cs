@@ -53,33 +53,30 @@ namespace SceneDesignTools
         }
 
 
-        private Color RealColor
+        public static Color GetRealColor(PointColor color)
         {
-            get
+            switch (color)
             {
-                switch (color)
-                {
-                    case PointColor.Red:
-                        return Color.red;
-                    case PointColor.Green:
-                        return Color.green;
-                    case PointColor.Blue:
-                        return Color.blue;
-                    case PointColor.White:
-                        return Color.white;
-                    case PointColor.Black:
-                        return Color.black;
-                    case PointColor.Yellow:
-                        return Color.yellow;
-                    case PointColor.Cyan:
-                        return Color.cyan;
-                    case PointColor.Magenta:
-                        return Color.magenta;
-                    case PointColor.Gray:
-                        return Color.gray;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                case PointColor.Red:
+                    return Color.red;
+                case PointColor.Green:
+                    return Color.green;
+                case PointColor.Blue:
+                    return Color.blue;
+                case PointColor.White:
+                    return Color.white;
+                case PointColor.Black:
+                    return Color.black;
+                case PointColor.Yellow:
+                    return Color.yellow;
+                case PointColor.Cyan:
+                    return Color.cyan;
+                case PointColor.Magenta:
+                    return Color.magenta;
+                case PointColor.Gray:
+                    return Color.gray;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -90,7 +87,7 @@ namespace SceneDesignTools
             if (!VisibleColors[(int)color])
                 return;
 
-            Gizmos.color = RealColor;
+            Gizmos.color = GetRealColor(color);
             const float size = 0.2f;
 
             if (Multiple <= 0)

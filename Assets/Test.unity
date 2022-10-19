@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa790cb898294308a6e8f8f85c9cd561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 2
+  color: 8
   showMe: 1
 --- !u!1 &294765561
 GameObject:
@@ -658,7 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa790cb898294308a6e8f8f85c9cd561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 0
+  color: 2
   showMe: 1
 --- !u!1 &1618613115
 GameObject:
@@ -897,5 +897,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa790cb898294308a6e8f8f85c9cd561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: 0
+  color: 8
   showMe: 1

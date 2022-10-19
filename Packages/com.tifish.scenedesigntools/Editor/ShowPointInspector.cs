@@ -20,20 +20,59 @@ namespace SceneDesignTools
         {
             serializedObject.Update();
 
-            EditorGUILayout.PropertyField(_colorProp, new GUIContent(Strings.Color));
-
             EditorGUILayout.PropertyField(_showMeProp, new GUIContent(Strings.ShowMe));
 
+            DrawMultiple();
+
+            DrawColorProperty();
+
+            serializedObject.ApplyModifiedProperties();
+        }
+
+        private void DrawMultiple()
+        {
             EditorGUI.BeginChangeCheck();
+
             ShowPoint.Multiple = EditorGUILayout.Slider(
                 Strings.Multiple, ShowPoint.Multiple, 0, 50);
+
             if (EditorGUI.EndChangeCheck())
             {
                 EditorPrefs.SetFloat(ShowPoint.ShowPointMultipleKey, ShowPoint.Multiple);
                 SceneView.RepaintAll();
             }
+        }
 
-            serializedObject.ApplyModifiedProperties();
+        private void DrawColorProperty()
+        {
+            GUILayout.Label(Strings.Color);
+
+            var oldColor = GUI.backgroundColor;
+
+            for (var i = 0; i < ShowPoint.ColorNames.Length; i++)
+            {
+                if (i % 3 == 0)
+                    EditorGUILayout.BeginHorizontal();
+
+                GUI.backgroundColor = ShowPoint.GetRealColor((ShowPoint.PointColor)i);
+
+                EditorGUI.BeginChangeCheck();
+
+                var selected = i == _colorProp.enumValueIndex;
+                selected = GUILayout.Toggle(selected, selected ? "O" : "x", "Button");
+
+                if (EditorGUI.EndChangeCheck())
+                    if (selected)
+                        _colorProp.enumValueIndex = i;
+
+                GUI.backgroundColor = oldColor;
+
+                if (i % 3 == 2)
+                    EditorGUILayout.EndHorizontal();
+            }
+
+            if ((ShowPoint.ColorNames.Length - 1) % 3 != 2)
+                EditorGUILayout.EndHorizontal();
         }
     }
 }
