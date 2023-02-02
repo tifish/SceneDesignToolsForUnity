@@ -34,6 +34,7 @@ namespace SceneDesignTools
                     continue;
                 }
 
+                Undo.RecordObject (go.transform, "Stick to ground");
                 StickToPoint(go.transform, hitInfo.point.y);
                 break;
             }
@@ -67,6 +68,7 @@ namespace SceneDesignTools
                     continue;
                 }
 
+                Undo.RecordObject (go.transform, "Stick to terrain");
                 StickToPoint(go.transform, hitInfo.point.y);
                 break;
             }

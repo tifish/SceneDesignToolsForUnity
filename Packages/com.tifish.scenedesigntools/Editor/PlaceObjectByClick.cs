@@ -74,6 +74,7 @@ namespace SceneDesignTools
             bottom.y -= go.transform.localScale.y * 0.5f;
 
             position -= bottom - newPosition;
+            Undo.RecordObject (go.transform, "Place object to");
             go.transform.position = position;
         }
     }
