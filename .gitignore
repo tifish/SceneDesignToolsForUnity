@@ -61,3 +61,5 @@ crashlytics-build.properties
 .idea
 /Packages/com.tifish.scenedesigntools/UploadPackage.cmd
 /Packages/com.tifish.scenedesigntools/UploadPackage.cmd.meta
+/Packages/com.tifish.scenedesigntools/package-lock.json
+/Packages/com.tifish.scenedesigntools/package-lock.json.meta
