@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Scripting;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 namespace SceneDesignTools
 {
+    [Preserve]
     [ExecuteInEditMode]
     public class ShowPoint : MonoBehaviour
     {
@@ -26,6 +28,7 @@ namespace SceneDesignTools
 #if UNITY_EDITOR
         public PointColor color = PointColor.Yellow;
         public bool showMe = true;
+
         public static float Multiple = -1f;
         public const string ShowPointMultipleKey = "ShowPointMultiple";
 
