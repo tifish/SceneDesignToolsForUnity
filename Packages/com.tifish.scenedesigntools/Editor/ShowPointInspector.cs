@@ -34,7 +34,7 @@ namespace SceneDesignTools
             EditorGUI.BeginChangeCheck();
 
             ShowPoint.Multiple = EditorGUILayout.Slider(
-                Strings.Multiple, ShowPoint.Multiple, 0, 50);
+                Strings.Multiple, ShowPoint.Multiple, 0, ShowPointTool.MultipleLimit);
 
             if (EditorGUI.EndChangeCheck())
             {

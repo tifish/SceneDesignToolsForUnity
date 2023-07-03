@@ -55,7 +55,6 @@ namespace SceneDesignTools
             }
         }
 
-
         public static Color GetRealColor(PointColor color)
         {
             switch (color)

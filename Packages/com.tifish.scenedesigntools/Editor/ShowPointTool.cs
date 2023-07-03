@@ -46,12 +46,25 @@ namespace SceneDesignTools
 
                 GUI.enabled = true;
 
+                MultipleLimitOnGUI();
+
                 VisibleColorsOnGUI();
 
                 EditorGUIHelper.EndIndent();
             }
 
             EditorGUIHelper.SeparatorLine();
+        }
+
+        private const string ShowPointMultipleLimitKey = "ShowPointMultipleLimit";
+        public static int MultipleLimit { get; private set; } = EditorPrefs.GetInt(ShowPointMultipleLimitKey, 50);
+
+        private void MultipleLimitOnGUI()
+        {
+            EditorGUI.BeginChangeCheck();
+            MultipleLimit = EditorGUILayout.IntField(Strings.ShowPointMultipleLimit, MultipleLimit);
+            if (EditorGUI.EndChangeCheck())
+                EditorPrefs.SetInt(ShowPointMultipleLimitKey, MultipleLimit);
         }
 
         private void VisibleColorsOnGUI()

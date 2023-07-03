@@ -24,6 +24,7 @@ namespace SceneDesignTools
         public const string RemoveShowPointTool = "删除显示点工具";
         public const string AddShowPointToolForDirectChildren = "为子节点添加显示点工具";
         public const string RemoveShowPointToolForDirectChildren = "为子节点删除显示点工具";
+        public const string ShowPointMultipleLimit = "放大倍数限制：";
         public const string VisibleColors = "要显示的颜色：";
         public const string ShowAll = "全部显示";
         public const string HideAll = "全部隐藏";
@@ -44,6 +45,7 @@ namespace SceneDesignTools
         public const string RemoveShowPointTool = "Remove show point tool";
         public const string AddShowPointToolForDirectChildren = "Add show point tool for direct children";
         public const string RemoveShowPointToolForDirectChildren = "Remove show point tool for direct children";
+        public const string ShowPointMultipleLimit = "Multiple limit:";
         public const string VisibleColors = "Visible colors:";
         public const string ShowAll = "Show all";
         public const string HideAll = "Hide all";
