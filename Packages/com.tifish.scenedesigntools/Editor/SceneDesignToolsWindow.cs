@@ -23,6 +23,7 @@ namespace SceneDesignTools
             _sceneDesignTools.Add(new StickToGroundTool(this));
             _sceneDesignTools.Add(new PlaceObjectByClickTool(this));
             _sceneDesignTools.Add(new IgnoreLayersTool(this));
+            _sceneDesignTools.Add(new MagnetTool(this));
             _sceneDesignTools.Add(new ShowPointTool(this));
             _sceneDesignTools.Add(new ColliderTool(this));
             _sceneDesignTools.Add(new CustomizedTool(this));

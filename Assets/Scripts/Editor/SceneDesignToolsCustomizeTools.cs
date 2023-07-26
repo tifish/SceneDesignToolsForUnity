@@ -7,7 +7,7 @@ public static class SceneDesignToolsCustomizeTools
 {
     static SceneDesignToolsCustomizeTools()
     {
-        CustomizedTools.AddCustomTools(OnGUI);
+        CustomizedTool.AddCustomTools(OnGUI);
     }
 
     private static bool _expanded;

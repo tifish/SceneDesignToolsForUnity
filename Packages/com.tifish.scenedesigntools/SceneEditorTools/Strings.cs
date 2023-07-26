@@ -32,6 +32,8 @@ namespace SceneDesignTools
         public const string ColliderRenderer = "碰撞体显示器";
         public const string AddColliderRenderer = "添加碰撞体显示器";
         public const string RemoveColliderRenderer = "删除碰撞体显示器";
+        public const string MagnetCollider = "磁吸碰撞体";
+        public const string MagnetColliderHint = "先选中固定物体，再选中要移动的物体";
 #else
         public const string SceneDesignTools = "Scene Design Tools";
         public const string StickToGround = "Stick to ground";
@@ -56,6 +58,8 @@ namespace SceneDesignTools
         public const string ColliderRenderer = "Collider Renderer";
         public const string AddColliderRenderer = "Add collider renderer";
         public const string RemoveColliderRenderer = "Remove collider renderer";
+        public const string MagnetCollider = "Magnet colliders";
+        public const string MagnetColliderHint = "Select fixed object first, then select moving object";
 #endif
 
         private const string ChineseMacroName = "SCENE_DESIGN_TOOLS_CHINESE_SIMPLIFIED";
