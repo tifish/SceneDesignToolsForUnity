@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace SceneDesignTools
@@ -14,29 +15,55 @@ namespace SceneDesignTools
         {
         }
 
+
+        public static event EventHandler BeforeStickTo;
+        public static event EventHandler AfterStickTo;
+        private static bool _isStickingSelectionTo;
+
         public static void StickSelectionToGround()
         {
-            foreach (var go in Selection.gameObjects)
-                StickGameObjectToGround(go);
+            _isStickingSelectionTo = true;
+            BeforeStickTo?.Invoke(null, EventArgs.Empty);
+            try
+            {
+                foreach (var go in Selection.gameObjects)
+                    StickGameObjectToGround(go);
+            }
+            finally
+            {
+                AfterStickTo?.Invoke(null, EventArgs.Empty);
+                _isStickingSelectionTo = false;
+            }
         }
 
         public static void StickGameObjectToGround(GameObject go)
         {
-            var currentCenter = go.transform.position;
-            currentCenter.y += _raisingHeightBeforeSticking;
+            if (!_isStickingSelectionTo)
+                BeforeStickTo?.Invoke(null, EventArgs.Empty);
 
-            while (Physics.Raycast(currentCenter, Vector3.down, out var hitInfo,
-                       float.MaxValue, IgnoreLayers.Mask))
+            try
             {
-                if (hitInfo.transform == go.transform)
-                {
-                    currentCenter.y -= 0.01f;
-                    continue;
-                }
+                var currentCenter = go.transform.position;
+                currentCenter.y += _raisingHeightBeforeSticking;
 
-                Undo.RecordObject (go.transform, "Stick to ground");
-                StickToPoint(go.transform, hitInfo.point.y);
-                break;
+                while (Physics.Raycast(currentCenter, Vector3.down, out var hitInfo,
+                           float.MaxValue, IgnoreLayers.Mask))
+                {
+                    if (hitInfo.transform == go.transform)
+                    {
+                        currentCenter.y -= 0.01f;
+                        continue;
+                    }
+
+                    Undo.RecordObject(go.transform, "Stick to ground");
+                    StickToPoint(go.transform, hitInfo.point.y);
+                    break;
+                }
+            }
+            finally
+            {
+                if (!_isStickingSelectionTo)
+                    AfterStickTo?.Invoke(null, EventArgs.Empty);
             }
         }
 
@@ -50,27 +77,48 @@ namespace SceneDesignTools
 
         public static void StickSelectionToTerrain()
         {
-            foreach (var go in Selection.gameObjects)
-                StickGameObjectToTerrain(go);
+            _isStickingSelectionTo = true;
+            BeforeStickTo?.Invoke(null, EventArgs.Empty);
+            try
+            {
+                foreach (var go in Selection.gameObjects)
+                    StickGameObjectToTerrain(go);
+            }
+            finally
+            {
+                AfterStickTo?.Invoke(null, EventArgs.Empty);
+                _isStickingSelectionTo = false;
+            }
         }
 
         public static void StickGameObjectToTerrain(GameObject go)
         {
-            var currentCenter = go.transform.position;
-            currentCenter.y = 60000;
+            if (!_isStickingSelectionTo)
+                BeforeStickTo?.Invoke(null, EventArgs.Empty);
 
-            while (Physics.Raycast(currentCenter, Vector3.down, out var hitInfo,
-                       float.MaxValue, IgnoreLayers.Mask))
+            try
             {
-                if (!hitInfo.transform.GetComponentInChildren<TerrainCollider>())
-                {
-                    currentCenter.y = hitInfo.point.y - 0.01f;
-                    continue;
-                }
+                var currentCenter = go.transform.position;
+                currentCenter.y = 60000;
 
-                Undo.RecordObject (go.transform, "Stick to terrain");
-                StickToPoint(go.transform, hitInfo.point.y);
-                break;
+                while (Physics.Raycast(currentCenter, Vector3.down, out var hitInfo,
+                           float.MaxValue, IgnoreLayers.Mask))
+                {
+                    if (!hitInfo.transform.GetComponentInChildren<TerrainCollider>())
+                    {
+                        currentCenter.y = hitInfo.point.y - 0.01f;
+                        continue;
+                    }
+
+                    Undo.RecordObject(go.transform, "Stick to terrain");
+                    StickToPoint(go.transform, hitInfo.point.y);
+                    break;
+                }
+            }
+            finally
+            {
+                if (!_isStickingSelectionTo)
+                    AfterStickTo?.Invoke(null, EventArgs.Empty);
             }
         }
 
