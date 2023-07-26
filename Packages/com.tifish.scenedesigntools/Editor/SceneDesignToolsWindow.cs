@@ -24,6 +24,7 @@ namespace SceneDesignTools
             _sceneDesignTools.Add(new PlaceObjectByClick(this));
             _sceneDesignTools.Add(new IgnoreLayers(this));
             _sceneDesignTools.Add(new ShowPointTool(this));
+            _sceneDesignTools.Add(new ColliderTool(this));
             _sceneDesignTools.Add(new CustomizedTools(this));
 
             SceneView.onSceneGUIDelegate += OnSceneGUI;

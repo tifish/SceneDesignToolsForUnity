@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿#if UNITY_EDITOR
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -28,6 +29,9 @@ namespace SceneDesignTools
         public const string VisibleColors = "要显示的颜色：";
         public const string ShowAll = "全部显示";
         public const string HideAll = "全部隐藏";
+        public const string Collider = "碰撞体";
+        public const string AddColliderRenderer = "添加碰撞体显示器";
+        public const string RemoveColliderRenderer = "移除碰撞体显示器";
 #else
         public const string SceneDesignTools = "Scene Design Tools";
         public const string StickToGround = "Stick to ground";
@@ -49,6 +53,9 @@ namespace SceneDesignTools
         public const string VisibleColors = "Visible colors:";
         public const string ShowAll = "Show all";
         public const string HideAll = "Hide all";
+        public const string Collider = "Collider";
+        public const string AddColliderRenderer = "Add Collider Renderer";
+        public const string RemoveColliderRenderer = "Remove Collider Renderer";
 #endif
 
         private const string ChineseMacroName = "SCENE_DESIGN_TOOLS_CHINESE_SIMPLIFIED";
@@ -79,3 +86,4 @@ namespace SceneDesignTools
         }
     }
 }
+#endif

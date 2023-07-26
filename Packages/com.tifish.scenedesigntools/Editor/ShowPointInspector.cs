@@ -49,12 +49,12 @@ namespace SceneDesignTools
 
             var oldColor = GUI.backgroundColor;
 
-            for (var i = 0; i < ShowPoint.ColorNames.Length; i++)
+            for (var i = 0; i < FixedColors.Names.Length; i++)
             {
                 if (i % 3 == 0)
                     EditorGUILayout.BeginHorizontal();
 
-                GUI.backgroundColor = ShowPoint.GetRealColor((ShowPoint.PointColor)i);
+                GUI.backgroundColor = FixedColors.GetRealColor((FixedColor)i);
 
                 EditorGUI.BeginChangeCheck();
 
@@ -71,7 +71,7 @@ namespace SceneDesignTools
                     EditorGUILayout.EndHorizontal();
             }
 
-            if ((ShowPoint.ColorNames.Length - 1) % 3 != 2)
+            if ((FixedColors.Names.Length - 1) % 3 != 2)
                 EditorGUILayout.EndHorizontal();
         }
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Scripting;
 #if UNITY_EDITOR
@@ -12,28 +11,12 @@ namespace SceneDesignTools
     [ExecuteInEditMode]
     public class ShowPoint : MonoBehaviour
     {
-        public enum PointColor
-        {
-            Red,
-            Green,
-            Blue,
-            White,
-            Black,
-            Yellow,
-            Cyan,
-            Magenta,
-            Gray,
-        }
-
 #if UNITY_EDITOR
-        public PointColor color = PointColor.Yellow;
+        public FixedColor color = FixedColor.Yellow;
         public bool showMe = true;
 
         public static float Multiple = -1f;
         public const string ShowPointMultipleKey = "ShowPointMultiple";
-
-        public static readonly string[] ColorNames = Enum.GetNames(typeof(PointColor));
-        public static readonly int ColorCount = ColorNames.Length;
 
         public const string VisibleColorsKey = "SceneDesignTools.ShowPoint.VisibleColors";
 
@@ -45,40 +28,13 @@ namespace SceneDesignTools
             {
                 if (_visibleColors == null)
                 {
-                    _visibleColors = new BitArray(ColorCount, true);
+                    _visibleColors = new BitArray(FixedColors.Count, true);
                     var visibleColorsInt = PlayerPrefs.GetInt(VisibleColorsKey, 0xFFFF);
                     for (var i = 0; i < VisibleColors.Count; i++)
                         VisibleColors[i] = ((visibleColorsInt >> i) & 1) == 1;
                 }
 
                 return _visibleColors;
-            }
-        }
-
-        public static Color GetRealColor(PointColor color)
-        {
-            switch (color)
-            {
-                case PointColor.Red:
-                    return Color.red;
-                case PointColor.Green:
-                    return Color.green;
-                case PointColor.Blue:
-                    return Color.blue;
-                case PointColor.White:
-                    return Color.white;
-                case PointColor.Black:
-                    return Color.black;
-                case PointColor.Yellow:
-                    return Color.yellow;
-                case PointColor.Cyan:
-                    return Color.cyan;
-                case PointColor.Magenta:
-                    return Color.magenta;
-                case PointColor.Gray:
-                    return Color.gray;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -89,7 +45,7 @@ namespace SceneDesignTools
             if (!VisibleColors[(int)color])
                 return;
 
-            Gizmos.color = GetRealColor(color);
+            Gizmos.color = FixedColors.GetRealColor(color);
             const float size = 0.2f;
 
             if (Multiple <= 0)
