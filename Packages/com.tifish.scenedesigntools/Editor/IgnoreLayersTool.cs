@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace SceneDesignTools
 {
-    public class IgnoreLayers : BaseSceneDesignTool
+    public class IgnoreLayersTool : BaseSceneDesignTool
     {
-        public IgnoreLayers(SceneDesignToolsWindow ownerWindow) : base(ownerWindow)
+        public IgnoreLayersTool(SceneDesignToolsWindow ownerWindow) : base(ownerWindow)
         {
         }
 
@@ -22,7 +22,7 @@ namespace SceneDesignTools
             Mask = ~_layerIDs.Aggregate(0, (ignoreMask, ignoreLayerID) => ignoreMask | (1 << ignoreLayerID));
         }
 
-        static IgnoreLayers()
+        static IgnoreLayersTool()
         {
             var pref = PlayerPrefs.GetString(IgnoreLayersKey, "");
 

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace SceneDesignTools
 {
-    public class CustomizedTools : BaseSceneDesignTool
+    public class CustomizedTool : BaseSceneDesignTool
     {
-        public CustomizedTools(SceneDesignToolsWindow ownerWindow) : base(ownerWindow)
+        public CustomizedTool(SceneDesignToolsWindow ownerWindow) : base(ownerWindow)
         {
         }
 

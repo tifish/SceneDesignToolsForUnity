@@ -20,12 +20,12 @@ namespace SceneDesignTools
         private void OnEnable()
         {
             _sceneDesignTools.Clear();
-            _sceneDesignTools.Add(new StickToGround(this));
-            _sceneDesignTools.Add(new PlaceObjectByClick(this));
-            _sceneDesignTools.Add(new IgnoreLayers(this));
+            _sceneDesignTools.Add(new StickToGroundTool(this));
+            _sceneDesignTools.Add(new PlaceObjectByClickTool(this));
+            _sceneDesignTools.Add(new IgnoreLayersTool(this));
             _sceneDesignTools.Add(new ShowPointTool(this));
             _sceneDesignTools.Add(new ColliderTool(this));
-            _sceneDesignTools.Add(new CustomizedTools(this));
+            _sceneDesignTools.Add(new CustomizedTool(this));
 
             SceneView.onSceneGUIDelegate += OnSceneGUI;
             EditorApplication.playModeStateChanged += OnPlayModeChanged;

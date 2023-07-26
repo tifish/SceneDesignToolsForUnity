@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace SceneDesignTools
 {
-    public class PlaceObjectByClick : BaseSceneDesignTool
+    public class PlaceObjectByClickTool : BaseSceneDesignTool
     {
-        public PlaceObjectByClick(SceneDesignToolsWindow ownerWindow) : base(ownerWindow)
+        public PlaceObjectByClickTool(SceneDesignToolsWindow ownerWindow) : base(ownerWindow)
         {
         }
 
@@ -49,7 +49,7 @@ namespace SceneDesignTools
                 return;
 
             var worldRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
-            if (!Physics.Raycast(worldRay, out var hitInfo, float.MaxValue, IgnoreLayers.Mask))
+            if (!Physics.Raycast(worldRay, out var hitInfo, float.MaxValue, IgnoreLayersTool.Mask))
                 return;
 
             foreach (var go in Selection.gameObjects)

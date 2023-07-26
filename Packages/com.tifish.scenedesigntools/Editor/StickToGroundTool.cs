@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace SceneDesignTools
 {
-    public class StickToGround : BaseSceneDesignTool
+    public class StickToGroundTool : BaseSceneDesignTool
     {
-        static StickToGround()
+        static StickToGroundTool()
         {
             _raisingHeightBeforeSticking = PlayerPrefs.GetFloat(RaisingHeightBeforeStickingKey, 0);
         }
 
-        public StickToGround(SceneDesignToolsWindow ownerWindow) : base(ownerWindow)
+        public StickToGroundTool(SceneDesignToolsWindow ownerWindow) : base(ownerWindow)
         {
         }
 
@@ -47,7 +47,7 @@ namespace SceneDesignTools
                 currentCenter.y += _raisingHeightBeforeSticking;
 
                 while (Physics.Raycast(currentCenter, Vector3.down, out var hitInfo,
-                           float.MaxValue, IgnoreLayers.Mask))
+                           float.MaxValue, IgnoreLayersTool.Mask))
                 {
                     if (hitInfo.transform == go.transform)
                     {
@@ -102,7 +102,7 @@ namespace SceneDesignTools
                 currentCenter.y = 60000;
 
                 while (Physics.Raycast(currentCenter, Vector3.down, out var hitInfo,
-                           float.MaxValue, IgnoreLayers.Mask))
+                           float.MaxValue, IgnoreLayersTool.Mask))
                 {
                     if (!hitInfo.transform.GetComponentInChildren<TerrainCollider>())
                     {
