@@ -13,7 +13,7 @@ namespace SceneDesignTools
 
         public override void OnGUI()
         {
-            _expanded = EditorGUILayout.Foldout(_expanded, Strings.ColliderRenderer, EditorGUIHelper.FoldoutStyle);
+            _expanded = EditorGUILayout.Foldout(_expanded, Strings.MagnetTool, EditorGUIHelper.FoldoutStyle);
             if (_expanded)
             {
                 GUI.enabled = ColliderMagnet.CanMagnent;
